@@ -9,7 +9,7 @@ data "databricks_spark_version" "latest_lts" {
 }
 
 resource "databricks_cluster" "shared_autoscaling" {
-  cluster_name            = "sam-db-cluster"
+  cluster_name            = "databricks-cluster"
   spark_version           = data.databricks_spark_version.latest_lts.id
   node_type_id            = data.databricks_node_type.smallest.id
   autotermination_minutes = 20

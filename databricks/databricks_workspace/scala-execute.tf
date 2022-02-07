@@ -31,11 +31,11 @@ resource "null_resource" "cluster" {
   # Copies the string in content into /tmp/file.log
   provisioner "file" {
     content     = "${data.template_file.spark_script.rendered}"
-    destination = "/tmp/spark-script.scala"
+    destination = "/tmp/onboard.scala"
   }
 
   provisioner "remote-exec" {
     # Bootstrap script called with private_ip of each node in the clutser
-    inline = ["cat /tmp/spark-script.scala | spark-shell --packages org.apache.hadoop:hadoop-openstack:2.7.4"]
+    inline = ["cat /tmp/onboard.scala | spark-shell --packages org.apache.hadoop:hadoop-openstack:2.7.4"]
   }
 }
